@@ -19,3 +19,8 @@
     "vite": "^6.2.0"
   }
 }
+"homepage": "https://manpreet243.github.io/nishat_beverages",
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+}
