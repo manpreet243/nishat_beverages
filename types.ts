@@ -1,4 +1,3 @@
-// Implemented the application's type definitions.
 
 export type View = 
   | 'dashboard'
