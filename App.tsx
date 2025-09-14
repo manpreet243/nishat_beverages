@@ -78,7 +78,7 @@ const App: React.FC = () => {
     const [selectedInventoryItem, setSelectedInventoryItem] = useState<InventoryItem | null>(null);
     const [selectedSalesman, setSelectedSalesman] = useState<Salesman | null>(null);
 
-    // Modal States
+    // Modal 
     const [isAddCustomerModalOpen, setAddCustomerModalOpen] = useState(false);
     const [isEditCustomerModalOpen, setEditCustomerModalOpen] = useState(false);
     const [isDeleteCustomerModalOpen, setDeleteCustomerModalOpen] = useState(false);
@@ -152,7 +152,7 @@ const App: React.FC = () => {
         setSelectedSalesman(null);
     };
 
-    // Customer Handlers
+    // Customer Handle
     const handleAddCustomer = (customerData: Omit<Customer, 'id' | 'bottlesPurchased' | 'paidBottles' | 'totalBalance' | 'deliveryDueToday' | 'deliveryDays' | 'emptyBottlesOnHand'>) => {
         const newCustomer: Customer = {
             ...customerData,
@@ -253,7 +253,7 @@ const App: React.FC = () => {
     const handleConfirmDeleteSale = () => {
         if (!saleToDelete) return;
 
-        // 1. Revert Inventory
+        // Revert Inventory
         const bottleItem = inventory.find(i => i.name.includes('19-Liter'));
         if (bottleItem && saleToDelete.bottlesSold > 0) {
             const newStock = bottleItem.stock + saleToDelete.bottlesSold;
@@ -262,7 +262,7 @@ const App: React.FC = () => {
             setStockAdjustments(prev => [newAdjustment, ...prev]);
         }
 
-        // 2. Revert Customer Stats
+      s
         if (!saleToDelete.isCounterSale) {
             setCustomers(prev => prev.map(c => {
                 if (c.id === saleToDelete.customerId) {
@@ -298,14 +298,14 @@ const App: React.FC = () => {
     };
 
 
-    // Effect to update delivery-due status daily
+ 
     useEffect(() => {
         const today = new Date().toLocaleString('en-us', { weekday: 'long' });
         setCustomers(prev => prev.map(c => ({
             ...c,
             deliveryDueToday: c.deliveryDays.includes(today)
         })));
-    }, []); // Runs once on app load
+    }, []); 
 
     const renderContent = () => {
         if (!userType || userType === 'admin') {
